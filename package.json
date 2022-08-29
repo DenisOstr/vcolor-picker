@@ -1,7 +1,7 @@
 {
   "name": "@envis/vcolor-picker",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "main": "./dist/vcolor-picker.umd.js",
   "module": "./dist/vcolor-picker.es.js",

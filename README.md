@@ -19,7 +19,7 @@ Component made using
 To install, you can use [npm](https://npmjs.org):
 
 ```
-$ npm install @envis/vcolor-picker
+npm install @envis/vcolor-picker
 ```
 
 ## Examples
