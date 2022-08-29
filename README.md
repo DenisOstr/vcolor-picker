@@ -43,7 +43,8 @@ Here is a simple examples of vcolor-picker being used in an app:
 </template>
 
 <script>
-import { VColorPicker } from 'vcolor-picker'
+import { VColorPicker } from '@envis/vcolor-picker'
+import '@envis/vcolor-picker/dist/style.css'
 
 export default {
   name: 'App',
@@ -70,8 +71,6 @@ export default {
   }
 }
 </script>
-
-<style src="vcolor-picker/dist/index.css" lang="css" />
 ```
 
 #### Gradient color picker
@@ -90,7 +89,8 @@ export default {
 </template>
 
 <script>
-import { VColorPicker } from 'vcolor-picker'
+import { VColorPicker } from '@envis/vcolor-picker'
+import '@envis/vcolor-picker/dist/style.css'
 
 export default {
   name: 'App',
@@ -131,8 +131,6 @@ export default {
   }
 }
 </script>
-
-<style src="vcolor-picker/dist/index.css" lang="css" />
 ```
 
 ### Composition API
@@ -153,7 +151,8 @@ export default {
 
 <script setup>
 import { ref } from 'vue'
-import { VColorPicker } from 'vcolor-picker'
+import { VColorPicker } from '@envis/vcolor-picker'
+import '@envis/vcolor-picker/dist/style.css'
 
 name: 'App',
 
@@ -163,8 +162,6 @@ const onChange = (attrs, name) => {
   color.value = { ...attrs }
 }
 </script>
-
-<style src="vcolor-picker/dist/index.css" lang="css" />
 ```
 
 #### Gradient color picker
@@ -184,7 +181,8 @@ const onChange = (attrs, name) => {
 
 <script setup>
 import { ref } from 'vue'
-import { VColorPicker } from 'vcolor-picker'
+import { VColorPicker } from '@envis/vcolor-picker'
+import '@envis/vcolor-picker/dist/style.css'
 
 name: 'App',
 
@@ -213,8 +211,6 @@ const onChange = (attrs, name) => {
   console.log(name)
 }
 </script>
-
-<style src="vcolor-picker/dist/index.css" lang="css" />
 ```
 
 ## Demo

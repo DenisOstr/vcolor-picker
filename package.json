@@ -1,7 +1,21 @@
 {
   "name": "@envis/vcolor-picker",
+  "description": "Vue 3 + Vite color picker. Simple and gradient color picker.",
   "private": false,
-  "version": "1.0.2",
+  "version": "1.0.5",
+  "author": {
+    "name": "Denis Ostrovsky",
+    "email": "denisostrovskis1@gmail.com"
+  },
+  "repository": "https://github.com/DenisOstr/vcolor-picker",
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ],
+  "keywords": ["Vue 3", "Vite", "TailwindCSS", "Color picker", "Gradient color picker", "Composition API"],
   "type": "module",
   "main": "./dist/vcolor-picker.umd.js",
   "module": "./dist/vcolor-picker.es.js",
@@ -9,7 +23,8 @@
     ".": {
       "import": "./dist/vcolor-picker.es.js",
       "require": "./dist/vcolor-picker.umd.js"
-    }
+    },
+    "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
     "dev": "vite",
