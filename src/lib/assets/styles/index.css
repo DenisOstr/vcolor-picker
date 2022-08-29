@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+.ui-color-picker {
+  @apply m-2 bg-white flex flex-col w-64;
+  @apply select-none;
+}
+
+.gradient-controls {
+  @apply flex flex-row items-center;
+  @apply w-full h-6 mb-2 px-4 py-0;
+}
+
+.gradient-type {
+  @apply flex flex-1;
+}
+
+.gradient-type-item {
+  @apply relative;
+  @apply w-7 h-7;
+  @apply rounded cursor-pointer;
+}
+
+.gradient-type-item.active::after {
+  content: '';
+
+  @apply absolute block;
+  @apply -inset-1;
+  @apply border-2 border-[#1F2667] rounded;
+}
+
+.gradient-type-item.linear-gradient {
+  background: linear-gradient(270deg, #FFFFFF 0%, #1F2667 100%);
+}
+.gradient-type-item.radial-gradient {
+  @apply ml-2;
+  background: radial-gradient(circle, #FFFFFF 0%, #1F2667 100%);
+}
+
+.gradient-degrees-options {
+  @apply relative;
+}
+
+.gradient-degrees {
+  @apply relative;
+  @apply flex justify-center items-center;
+  @apply w-7 h-7 mr-14;
+  @apply border-2 border-[#1F2667] rounded-2xl;
+}
+
+.gradient-degree-center {
+  @apply relative;
+  @apply w-[6px] h-[22px];
+  @apply pointer-events-none;
+}
+
+.gradient-degree-pointer {
+  @apply absolute;
+  @apply w-[6px] h-[6px] top-[2px];
+  @apply rounded;
+  @apply bg-[#1F2667];
+}
+
+.gradient-degree-value {
+  @apply absolute;
+  @apply w-12 h-7 top-0 right-0;
+  @apply flex justify-center items-center;
+  @apply border border-[#bbbfc5] rounded;
+}
+
+.gradient-degree-value p {
+  @apply text-center;
+  @apply p-2;
+}
+
+.picker-area {
+  @apply flex flex-col;
+  @apply px-4 py-0;
+}
+
+.picker-area.gradient-tab .picker-area {
+  @apply mb-[10px];
+}
+
+.picker-area .picking-area {
+  @apply relative;
+  @apply w-full h-40 mb-4;
+  @apply rounded;
+}
+
+.picking-area:hover {
+  @apply cursor-default;
+}
+
+.picking-area-overlay-f {
+  @apply w-full h-full;
+  @apply rounded;
+
+  background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.picking-area-overlay-f .picking-area-overlay-s {
+  @apply w-full h-full;
+  @apply rounded;
+
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, black 100%);
+}
+
+.preview {
+  @apply flex flex-row items-center;
+  @apply mb-4;
+}
+
+.preview-box {
+  @apply box-border;
+  @apply w-9 h-9;
+  @apply border border-[#EBEDF5] rounded;
+}
+
+.preview .color-hue-alpha {
+  @apply flex flex-col flex-1;
+  @apply ml-[6px];
+}
+
+.preview .color-hue-alpha .hue {
+  @apply relative;
+  @apply w-full mb-2 px-[7px] py-0;
+  @apply bg-[#ff0000];
+  @apply rounded-full;
+  @apply cursor-pointer;
+}
+
+.color-hue-alpha .hue .hue-area {
+  @apply relative;
+  @apply h-[14px];
+
+  background: -webkit-linear-gradient(left, #ff0000, #ff0080, #ff00ff, #8000ff, #0000ff, #0080ff, #00ffff, #00ff80, #00ff00, #80ff00, #ffff00, #ff8000, #ff0000);
+  background: -o-linear-gradient(left, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
+  background: -ms-linear-gradient(left, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
+  background: -moz-linear-gradient(left, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
+  background: linear-gradient(to right, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
+}
+
+.preview .color-hue-alpha .alpha {
+  @apply relative;
+  @apply w-full h-[14px];
+  @apply rounded-lg;
+  @apply overflow-hidden cursor-pointer;
+}
+
+.preview .color-hue-alpha .alpha .gradient {
+  @apply absolute top-0 left-0 right-0 bottom-0;
+}
+
+.preview .color-hue-alpha .alpha .alpha-area {
+  background: url("assets/images/alpha-bg.svg");
+  background-size: auto;
+  background-position: 50% 50%;
+
+  @apply w-full h-full px-[7px] py-0;
+  @apply rounded-lg;
+}
+
+.preview .color-hue-alpha .alpha .alpha-area .alpha-mask,
+.ui-color-picker .picker-area .gradient .gradient-slider-container {
+  @apply relative;
+  @apply w-full h-full;
+}
+
+.ui-color-picker .picker-area .gradient {
+  @apply relative;
+  @apply w-full h-[14px] px-[7px] py-0 mb-2;
+  @apply rounded-lg;
+  @apply cursor-pointer;
+}
+
+.ui-color-picker .picker-area .picker-pointer {
+  @apply absolute top-[1px];
+  @apply w-3 h-3;
+  @apply bg-transparent;
+  @apply border border-white rounded-full;
+  @apply shadow;
+}
+
+.ui-color-picker .picker-area .picker-pointer .child-point {
+  @apply absolute top-1/2 left-1/2;
+  @apply w-[3px] h-[3px];
+  @apply bg-white;
+  @apply rounded-full;
+  @apply opacity-0;
+
+  transform: translate(-50%, -50%);
+  transition: opacity 0.33s;
+}
+
+.ui-color-picker .picker-area .picker-pointer .child-point.active {
+  @apply opacity-100;
+}
+
+.ui-color-picker .color-preview-area {
+  @apply mb-2 px-4 py-0;
+}
+
+.input-group {
+  @apply w-full;
+  @apply flex flex-col;
+  @apply space-y-4;
+}
+
+.rgb-input-group {
+  @apply flex justify-between;
+}
+
+.ui-color-picker .color-preview-area .input-group .uc-field-group:not(:last-child) {
+  @apply mr-[7px];
+}
+
+.hex {
+  @apply w-full;
+}
+.rgb {
+  @apply w-12;
+}
