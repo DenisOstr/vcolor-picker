@@ -23,7 +23,9 @@ $ npm install vcolor-picker
 $ yarn add vcolor-picker
 ```
 
-## Here is a simple examples of vcolor-picker being used in an app:
+## Examples
+
+Here is a simple examples of vcolor-picker being used in an app:
 
 ### Options API
 
