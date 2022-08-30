@@ -35,6 +35,8 @@ Here is a simple examples of vcolor-picker being used in an app:
   <div id="app">
     <VColorPicker
       :color="color"
+      :presetEnabled="true"
+      :historyEnabled="true"
       :onStartChange="color => onChange(color, 'start')"
       :onChange="color => onChange(color, 'change')"
       :onEndChange="color => onChange(color, 'end')"
@@ -81,6 +83,8 @@ export default {
     <VColorPicker
       :gradient="gradient"
       :isGradient="true"
+      :presetEnabled="true"
+      :historyEnabled="true"
       :onStartChange="color => onChange(color, 'start')"
       :onChange="color => onChange(color, 'change')"
       :onEndChange="color => onChange(color, 'end')"
@@ -142,6 +146,8 @@ export default {
   <div id="app">
     <VColorPicker
       :color="color"
+      :presetEnabled="true"
+      :historyEnabled="true"
       :onStartChange="color => onChange(color, 'start')"
       :onChange="color => onChange(color, 'change')"
       :onEndChange="color => onChange(color, 'end')"
@@ -172,6 +178,8 @@ const onChange = (attrs, name) => {
     <VColorPicker
       :gradient="gradient"
       :isGradient="true"
+      :presetEnabled="true"
+      :historyEnabled="true"
       :onStartChange="color => onChange(color, 'start')"
       :onChange="color => onChange(color, 'change')"
       :onEndChange="color => onChange(color, 'end')"

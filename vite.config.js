@@ -21,7 +21,13 @@ export default defineConfig({
 
     rollupOptions: {
       external: Object.keys(Object.assign(pkg.dependencies, pkg.devDependencies)),
-    }
+      output: {
+        globals: {
+          vue: 'Vue',
+          vuex: 'Vuex'
+        }
+      }
+    },
   },
 
   plugins: [vue()]
