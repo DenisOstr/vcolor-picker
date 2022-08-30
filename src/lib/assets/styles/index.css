@@ -226,3 +226,26 @@
 .rgb {
   @apply w-12;
 }
+
+.ready-colors {
+  @apply space-y-4;
+}
+
+.ready-colors-container {
+  @apply ml-4 first:mt-2 space-y-1;
+}
+
+.container-heading {
+  @apply text-xs text-left uppercase;
+}
+
+.color-boxes-container {
+  @apply grid grid-cols-8 gap-1;
+  @apply mr-2.5;
+}
+
+.color-box {
+  @apply w-5 h-5;
+  @apply rounded;
+  @apply cursor-pointer;
+}

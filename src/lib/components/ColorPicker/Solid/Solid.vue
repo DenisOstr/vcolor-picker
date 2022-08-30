@@ -2,17 +2,27 @@
     <Area :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :hue="colorHue"
         :saturation="colorSaturation" :value="colorValue" :updateColor="updateColor" :isGradient="false" />
     <Preview :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :updateColor="updateColor" />
+
+    <div class="ready-colors" v-if="presetEnabled || historyEnabled">
+        <Preset :updateColor="updateColor" v-if="presetEnabled" />
+        <History :updateColor="updateColor" v-if="historyEnabled" />
+    </div>
 </template>
 
 <script setup>
     import { computed, onMounted, watch, ref } from 'vue'
+    import { useStore } from 'vuex'
 
     import Area from '../Area/Area.vue'
     import Preview from '../Preview/Preview.vue'
+    import Preset from '../Preset/Preset.vue'
+    import History from '../History/History.vue'
 
-    import { rgbToHsv, getRightValue, generateSolidStyle } from '@/lib/helpers'
+    import { rgbToHsv, rgbToHex, getRightValue, generateSolidStyle } from '@/lib/helpers'
 
     name: 'Solid'
+
+    const store = useStore()
 
     // Props
     const props = defineProps({
@@ -39,6 +49,10 @@
         hue: Number,
         saturation: Number,
         value: Number,
+        
+        presetEnabled: Boolean,
+        historyEnabled: Boolean,
+
         onStartChange: Function,
         onChange: Function,
         onEndChange: Function
@@ -111,6 +125,12 @@
         colorHue.value = hue
         colorSaturation.value = saturation
         colorValue.value = value
+
+        if (actionName == 'onEndChange') {
+            const hexColor = rgbToHex(red, green, blue)
+
+            store.dispatch('addColorToHistory', `#${hexColor}`)
+        }
 
         const action = actions.value[actionName]
 

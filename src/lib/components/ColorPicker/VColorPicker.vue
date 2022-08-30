@@ -1,9 +1,9 @@
 <template>
     <div class="ui-color-picker">
-        <Gradient :type="gradient.type" :points="gradient.points" :degree="gradient.degree"
+        <Gradient :type="gradient.type" :points="gradient.points" :degree="gradient.degree" :presetEnabled="presetEnabled" :historyEnabled="historyEnabled"
             :onChange="onChange" :onStartChange="onStartChange" :onEndChange="onEndChange" v-if="isGradient" />
 
-        <Solid :red="color.red" :green="color.green" :blue="color.blue" :alpha="color.alpha" :hue="color.hue"
+        <Solid :red="color.red" :green="color.green" :blue="color.blue" :alpha="color.alpha" :hue="color.hue" :presetEnabled="presetEnabled" :historyEnabled="historyEnabled"
             :saturation="color.saturation" :value="color.value" :onChange="onChange" :onStartChange="onStartChange" :onEndChange="onEndChange" v-else />
     </div>
 </template>
@@ -43,6 +43,16 @@
                     { left: 100, red: 255, green: 0, blue: 0, alpha: 1 }
                 ]
             })
+        },
+
+        presetEnabled: {
+            type: Boolean,
+            default: true
+        },
+
+        historyEnabled: {
+            type: Boolean,
+            default: true
         },
 
         onStartChange: {

@@ -7,6 +7,11 @@
         :changeActivePointIndex="changeActivePointIndex" :updateGradientLeft="updateGradientLeft" :addPoint="addPoint" :removePoint="removePoint" />
 
     <Preview :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :updateColor="updateColor" />
+
+    <div class="ready-colors" v-if="presetEnabled || historyEnabled">
+        <Preset :updateColor="updateColor" v-if="presetEnabled" />
+        <History :updateColor="updateColor" v-if="historyEnabled" />
+    </div>
 </template>
 
 <script setup>
@@ -15,6 +20,8 @@
     import GradientControls from './GradientControls.vue'
     import Preview from '../Preview/Preview.vue'
     import Area from '../Area/Area.vue'
+    import Preset from '../Preset/Preset.vue'
+    import History from '../History/History.vue'
 
     import { getRightValue, rgbToHsv, generateGradientStyle } from '@/lib/helpers'
 
@@ -41,6 +48,9 @@
                 ];
             }
         },
+
+        presetEnabled: Boolean,
+        historyEnabled: Boolean,
 
         onStartChange: Function,
         onChange: Function,
