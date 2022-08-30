@@ -23,8 +23,7 @@ export default defineConfig({
       external: Object.keys(Object.assign(pkg.dependencies, pkg.devDependencies)),
       output: {
         globals: {
-          vue: 'Vue',
-          vuex: 'Vuex'
+          vue: 'Vue'
         }
       }
     },

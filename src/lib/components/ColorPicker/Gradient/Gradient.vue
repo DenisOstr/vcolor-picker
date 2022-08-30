@@ -10,7 +10,7 @@
 
     <div class="ready-colors" v-if="presetEnabled || historyEnabled">
         <Preset :updateColor="updateColor" v-if="presetEnabled" />
-        <History :updateColor="updateColor" v-if="historyEnabled" />
+        <History :historyData="history" :updateColor="updateColor" v-if="historyEnabled" />
     </div>
 </template>
 
@@ -23,7 +23,7 @@
     import Preset from '../Preset/Preset.vue'
     import History from '../History/History.vue'
 
-    import { getRightValue, rgbToHsv, generateGradientStyle } from '@/lib/helpers'
+    import { getRightValue, rgbToHsv, rgbToHex, generateGradientStyle } from '@/lib/helpers'
 
     name: 'Gradient'
 
@@ -75,6 +75,8 @@
         onChange: props.onChange,
         onEndChange: props.onEndChange
     })
+
+    const history = ref([])
 
     // Methods
     const removePoint = (index = activePointIndex.value) => {
@@ -165,6 +167,22 @@
         colorValue.value = value;
         gradientPoints.value = localGradientPoints;
 
+        if (actionName == 'onEndChange') {
+            const hexColor = rgbToHex(red, green, blue)
+            const colorHistory = JSON.parse(localStorage.colorHistory)
+
+            if (colorHistory.length >= 8) {
+                colorHistory.pop()
+                colorHistory.unshift(`#${hexColor}`)
+                localStorage.setItem('colorHistory', JSON.stringify(colorHistory))
+            } else {
+                colorHistory.unshift(`#${hexColor}`)
+                localStorage.setItem('colorHistory', JSON.stringify(colorHistory))
+            }
+
+            history.value = colorHistory
+        }
+
         const action = actions.value[actionName];
 
         action && action({
@@ -212,6 +230,12 @@
         colorHue.value = hue
         colorSaturation.value = saturation
         colorValue.value = value
+
+        if (!localStorage.colorHistory) {
+            localStorage.setItem('colorHistory', JSON.stringify([]))
+        } else {
+            history.value = JSON.parse(localStorage.colorHistory)
+        }
 
         document.addEventListener('keyup', keyUpHandler)
     })

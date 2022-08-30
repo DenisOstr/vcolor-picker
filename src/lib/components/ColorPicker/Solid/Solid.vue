@@ -5,13 +5,12 @@
 
     <div class="ready-colors" v-if="presetEnabled || historyEnabled">
         <Preset :updateColor="updateColor" v-if="presetEnabled" />
-        <History :updateColor="updateColor" v-if="historyEnabled" />
+        <History :historyData="history" :updateColor="updateColor" v-if="historyEnabled" />
     </div>
 </template>
 
 <script setup>
     import { computed, onMounted, watch, ref } from 'vue'
-    import { useStore } from 'vuex'
 
     import Area from '../Area/Area.vue'
     import Preview from '../Preview/Preview.vue'
@@ -21,8 +20,6 @@
     import { rgbToHsv, rgbToHex, getRightValue, generateSolidStyle } from '@/lib/helpers'
 
     name: 'Solid'
-
-    const store = useStore()
 
     // Props
     const props = defineProps({
@@ -72,6 +69,8 @@
         onEndChange: props.onEndChange
     })
 
+    const history = ref([])
+
     // Mounteds
     onMounted(() => {
         const { hue, saturation, value } = rgbToHsv({ red: colorRed.value, green: colorGreen.value, blue: colorBlue.value })
@@ -79,6 +78,12 @@
         colorHue.value = hue
         colorSaturation.value = saturation
         colorValue.value = value
+
+        if (!localStorage.colorHistory) {
+            localStorage.setItem('colorHistory', JSON.stringify([]))
+        } else {
+            history.value = JSON.parse(localStorage.colorHistory)
+        }
     })
 
     // Computeds
@@ -128,8 +133,18 @@
 
         if (actionName == 'onEndChange') {
             const hexColor = rgbToHex(red, green, blue)
+            const colorHistory = JSON.parse(localStorage.colorHistory)
 
-            store.dispatch('addColorToHistory', `#${hexColor}`)
+            if (colorHistory.length >= 8) {
+                colorHistory.pop()
+                colorHistory.unshift(`#${hexColor}`)
+                localStorage.setItem('colorHistory', JSON.stringify(colorHistory))
+            } else {
+                colorHistory.unshift(`#${hexColor}`)
+                localStorage.setItem('colorHistory', JSON.stringify(colorHistory))
+            }
+
+            history.value = colorHistory
         }
 
         const action = actions.value[actionName]
