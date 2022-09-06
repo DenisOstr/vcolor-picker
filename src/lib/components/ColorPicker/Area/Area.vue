@@ -1,10 +1,16 @@
 <template>
     <div class="picker-area">
+        <GradientPoints :type="type" :degree="degree" :points="points" :activePointIndex="activePointIndex"
+            :changeActivePointIndex="changeActivePointIndex" :updateGradientLeft="updateGradientLeft" :addPoint="addPoint"
+            :removePoint="removePoint" v-if="isGradient && gradientPosition == 'top'" />
+
         <Picker :red="red" :green="green" :blue="blue" :hue="hue" :saturation="saturation" :value="value" :updateColor="updateColor" />
+
+        <EyeDropper :updateColor="updateColor" />
 
         <GradientPoints :type="type" :degree="degree" :points="points" :activePointIndex="activePointIndex"
             :changeActivePointIndex="changeActivePointIndex" :updateGradientLeft="updateGradientLeft" :addPoint="addPoint"
-            :removePoint="removePoint" v-if="isGradient" />
+            :removePoint="removePoint" v-if="isGradient && gradientPosition == 'bottom'" />
 
         <div class="preview">
             <Preview :red="red" :green="green" :blue="blue" :alpha="alpha" :isGradient="isGradient"
@@ -28,12 +34,14 @@
     import Hue from './Hue/Hue.vue'
     import Alpha from './Alpha/Alpha.vue'
     import GradientPoints from './GradientPoints/GradientPoints.vue'
+    import EyeDropper from './EyeDropper/EyeDropper.vue'
 
     name: 'Area'
 
     // Props
     defineProps({
         isGradient: Boolean,
+        gradientPosition: String,
         red: Number,
         green: Number,
         blue: Number,

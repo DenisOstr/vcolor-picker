@@ -2,7 +2,7 @@
     <GradientControls :type="gradientType" :degree="gradientDegree" :changeGradientControl="changeGradientControl" />
 
     <Area :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :hue="colorHue" :saturation="colorSaturation"
-        :value="colorValue" :updateColor="updateColor" :isGradient="true" :type="gradientType" :degree="gradientDegree"
+        :value="colorValue" :updateColor="updateColor" :isGradient="true" :gradientPosition="gradientPosition" :type="gradientType" :degree="gradientDegree"
         :points="gradientPoints" :activePointIndex="activePointIndex" :changeGradientControl="changeGradientControl"
         :changeActivePointIndex="changeActivePointIndex" :updateGradientLeft="updateGradientLeft" :addPoint="addPoint" :removePoint="removePoint" />
 
@@ -48,6 +48,8 @@
                 ];
             }
         },
+
+        gradientPosition: String,
 
         presetEnabled: Boolean,
         historyEnabled: Boolean,
