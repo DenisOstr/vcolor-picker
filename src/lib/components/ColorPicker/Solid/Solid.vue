@@ -1,6 +1,6 @@
 <template>
     <Area :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :hue="colorHue"
-        :saturation="colorSaturation" :value="colorValue" :updateColor="updateColor" :isGradient="false" />
+        :eyeDropperEnabled="eyeDropperEnabled" :saturation="colorSaturation" :value="colorValue" :updateColor="updateColor" :isGradient="false" />
     <Preview :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :updateColor="updateColor" />
 
     <div class="ready-colors" v-if="presetEnabled || historyEnabled">
@@ -49,6 +49,7 @@
         
         presetEnabled: Boolean,
         historyEnabled: Boolean,
+        eyeDropperEnabled: Boolean,
 
         onStartChange: Function,
         onChange: Function,

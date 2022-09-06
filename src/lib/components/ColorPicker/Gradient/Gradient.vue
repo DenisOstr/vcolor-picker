@@ -3,7 +3,7 @@
 
     <Area :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :hue="colorHue" :saturation="colorSaturation"
         :value="colorValue" :updateColor="updateColor" :isGradient="true" :gradientPosition="gradientPosition" :type="gradientType" :degree="gradientDegree"
-        :points="gradientPoints" :activePointIndex="activePointIndex" :changeGradientControl="changeGradientControl"
+        :eyeDropperEnabled="eyeDropperEnabled" :points="gradientPoints" :activePointIndex="activePointIndex" :changeGradientControl="changeGradientControl"
         :changeActivePointIndex="changeActivePointIndex" :updateGradientLeft="updateGradientLeft" :addPoint="addPoint" :removePoint="removePoint" />
 
     <Preview :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :updateColor="updateColor" />
@@ -53,6 +53,7 @@
 
         presetEnabled: Boolean,
         historyEnabled: Boolean,
+        eyeDropperEnabled: Boolean,
 
         onStartChange: Function,
         onChange: Function,

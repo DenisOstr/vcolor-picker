@@ -2,7 +2,7 @@
   "name": "@envis/vcolor-picker",
   "description": "Vue 3 + Vite color picker. Simple and gradient color picker.",
   "private": false,
-  "version": "1.1.1",
+  "version": "1.2.0",
   "author": {
     "name": "Denis Ostrovsky",
     "email": "denisostrovskis1@gmail.com"
