@@ -6,8 +6,6 @@
 
         <Picker :red="red" :green="green" :blue="blue" :hue="hue" :saturation="saturation" :value="value" :updateColor="updateColor" />
 
-        <EyeDropper :canvas="canvas" :multipleLayers="multipleLayers" :updateColor="updateColor" v-if="eyeDropperEnabled" />
-
         <GradientPoints :type="type" :degree="degree" :points="points" :activePointIndex="activePointIndex"
             :changeActivePointIndex="changeActivePointIndex" :updateGradientLeft="updateGradientLeft" :addPoint="addPoint"
             :removePoint="removePoint" v-if="isGradient && gradientPosition == 'bottom'" />
@@ -21,9 +19,7 @@
                 <Alpha :alpha="alpha" :red="red" :green="green" :blue="blue" :updateColor="updateColor" />
             </div>
 
-            <!-- <button class="bg-gray-200 w-10 h-10 flex justify-center items-center rounded">
-                <img src="assets/images/eye-dropper.svg" alt="" class="w-6 h-6">
-            </button> -->
+            <EyeDropper :canvas="canvas" :multipleLayers="multipleLayers" :updateColor="updateColor" v-if="eyeDropperEnabled" />
         </div>
     </div>
 </template>
