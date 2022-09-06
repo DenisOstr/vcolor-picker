@@ -1,10 +1,12 @@
 <template>
     <div class="ui-color-picker">
         <Gradient :type="gradient.type" :gradientPosition="gradientPosition" :points="gradient.points" :degree="gradient.degree" :presetEnabled="presetEnabled" :historyEnabled="historyEnabled"
-            :eyeDropperEnabled="eyeDropperEnabled" :onChange="onChange" :onStartChange="onStartChange" :onEndChange="onEndChange" v-if="isGradient" />
+            :eyeDropperEnabled="eyeDropperEnabled" :canvas="canvas" :multipleLayers="multipleLayers"
+            :onChange="onChange" :onStartChange="onStartChange" :onEndChange="onEndChange" v-if="isGradient" />
 
         <Solid :red="color.red" :green="color.green" :blue="color.blue" :alpha="color.alpha" :hue="color.hue" :presetEnabled="presetEnabled" :historyEnabled="historyEnabled"
-            :eyeDropperEnabled="eyeDropperEnabled" :saturation="color.saturation" :value="color.value" :onChange="onChange" :onStartChange="onStartChange" :onEndChange="onEndChange" v-else />
+            :eyeDropperEnabled="eyeDropperEnabled" :canvas="canvas" :multipleLayers="multipleLayers"
+            :saturation="color.saturation" :value="color.value" :onChange="onChange" :onStartChange="onStartChange" :onEndChange="onEndChange" v-else />
     </div>
 </template>
 
@@ -44,6 +46,9 @@
                 ]
             })
         },
+
+        canvas: Object,
+        multipleLayers: Boolean,
 
         gradientPosition: {
             type: String,

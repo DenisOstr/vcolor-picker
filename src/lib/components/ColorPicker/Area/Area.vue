@@ -6,7 +6,7 @@
 
         <Picker :red="red" :green="green" :blue="blue" :hue="hue" :saturation="saturation" :value="value" :updateColor="updateColor" />
 
-        <EyeDropper :updateColor="updateColor" />
+        <EyeDropper :canvas="canvas" :multipleLayers="multipleLayers" :updateColor="updateColor" v-if="eyeDropperEnabled" />
 
         <GradientPoints :type="type" :degree="degree" :points="points" :activePointIndex="activePointIndex"
             :changeActivePointIndex="changeActivePointIndex" :updateGradientLeft="updateGradientLeft" :addPoint="addPoint"
@@ -49,11 +49,14 @@
         hue: Number,
         saturation: Number,
         value: Number,
-        updateColor: Function,
         points: Array,
         degree: Number,
         type: String,
         activePointIndex: Number,
+        eyeDropperEnabled: Boolean,
+        canvas: Object,
+        multipleLayers: Boolean,
+        updateColor: Function,
         changeGradientControl: Function,
         changeActivePointIndex: Function,
         updateGradientLeft: Function,
