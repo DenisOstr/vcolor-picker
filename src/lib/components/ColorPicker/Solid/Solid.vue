@@ -1,7 +1,7 @@
 <template>
     <Area :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :hue="colorHue"
         :canvas="canvas" :multipleLayers="multipleLayers" :eyeDropperEnabled="eyeDropperEnabled"
-        :saturation="colorSaturation" :value="colorValue" :updateColor="updateColor" :isGradient="false" />
+        :saturation="colorSaturation" :value="colorValue" :updateColor="updateColor" :isGradient="false" @eyeDropperEvent="$emit('eyeDropperEvent', $event)" />
     <Preview :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :updateColor="updateColor" />
 
     <div class="ready-colors" v-if="presetEnabled || historyEnabled">
@@ -59,6 +59,8 @@
         onChange: Function,
         onEndChange: Function
     })
+
+    defineEmits(['eyeDropperEvent'])
 
     // Constants
     const colorRed = ref(props.red)

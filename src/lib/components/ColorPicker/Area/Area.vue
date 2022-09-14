@@ -19,7 +19,7 @@
                 <Alpha :alpha="alpha" :red="red" :green="green" :blue="blue" :updateColor="updateColor" />
             </div>
 
-            <EyeDropper :canvas="canvas" :multipleLayers="multipleLayers" :updateColor="updateColor" v-if="eyeDropperEnabled" />
+            <EyeDropper :canvas="canvas" :multipleLayers="multipleLayers" :updateColor="updateColor" @handleEyeDropperEvent="$emit('eyeDropperEvent', $event)" v-if="eyeDropperEnabled" />
         </div>
     </div>
 </template>
@@ -59,4 +59,6 @@
         addPoint: Function,
         removePoint: Function
     })
+
+    defineEmits(['eyeDropperEvent'])
 </script>

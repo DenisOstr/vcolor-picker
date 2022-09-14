@@ -249,3 +249,12 @@
   @apply rounded;
   @apply cursor-pointer;
 }
+
+.eye-dropper-container {
+  @apply flex items-center;
+  @apply space-x-2 ml-2;
+}
+
+.eye-dropper-active {
+  @apply text-green-400;
+}
