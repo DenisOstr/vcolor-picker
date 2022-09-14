@@ -11,6 +11,7 @@ Component made using
 ## Table of Contents
  
 - [Installation](https://github.com/DenisOstr/vcolor-picker#installation)
+- [Properties](https://github.com/DenisOstr/vcolor-picker#properties)
 - [Examples](https://github.com/DenisOstr/vcolor-picker#examples)
 - [Demo](https://github.com/DenisOstr/vcolor-picker#demo)
 
@@ -21,6 +22,30 @@ To install, you can use [npm](https://npmjs.org):
 ```
 npm install @envis/vcolor-picker
 ```
+
+## Properties
+
+### Props
+
+| Name               | Type        | Default                                                                           | Description                             |
+| -----------        | ----------- | --------------------------------------------------------------------------------- | --------------------------------------- |
+| canvas             | Object      | `{}`                                                                              | html5 canvas object (`canvas` ref)
+| color              | Object      | `{ red: 255, green: 0, blue: 0, alpha: 1, hue: 0, saturation: 100, value: 100 }`  | object of rgb and hsv values
+| isGradient         | Boolean     | `false`                                                                           | property renders a gradient color picker
+| gradient           | Object      | `{ type: 'linear', degree: 0, points: [{ left: 0, red: 0, green: 0, blue: 0, alpha: 1 }, { left: 100, red: 255, green: 0, blue: 0, alpha: 1 }] }`                                                                                                | object of colors for gradient
+| presetEnabled      | Boolean     | `true`                                                                            | property enable preset colors
+| historyEnabled     | Boolean     | `true`                                                                            | property enable history
+| multipleLayers     | Boolean     | `false`                                                                           | property to check canvas layering (`FabricJS`)
+| eyeDropperEnabled  | Boolean     | `true`                                                                            | property enable eye dropper
+| onChange           | Function    | `() => {}`                                                                        | `(color) => onChange(color, 'change')`
+| onStartChange      | Function    | `() => {}`                                                                        | `(color) => onChange(color, 'start')`
+| onEndChange        | Function    | `() => {}`                                                                        | `(color) => onChange(color, 'end')`
+
+### Emits
+
+| Name               | Type        | Description                                                           |
+| -----------        | ----------- | --------------------------------------------------------------------- |
+| eyeDropperEvent    | Boolean     | return `true` or `false` value when eye dropper enabled or disabled
 
 ## Examples
 
@@ -35,12 +60,16 @@ Here is a simple examples of vcolor-picker being used in an app:
   <div id="app">
     <VColorPicker
       :color="color"
+      :canvas="canvas"
       :presetEnabled="true"
       :historyEnabled="true"
+      :eyeDropperEnabled="true"
       :onStartChange="color => onChange(color, 'start')"
       :onChange="color => onChange(color, 'change')"
       :onEndChange="color => onChange(color, 'end')"
     />
+
+    <canvas id="canv" width="600" height="400" class="absolute right-4 top-4 bg-gray-200 rounded-md" ref="canvas"></canvas>
   </div>
 </template>
 
@@ -62,7 +91,9 @@ export default {
         green: 0,
         blue: 0,
         alpha: 1
-      }
+      },
+
+      canvas: this.$ref.canvas
     }
   },   
 
@@ -81,14 +112,18 @@ export default {
 <template>
   <div id="app">
     <VColorPicker
+      :canvas="canvas"
       :gradient="gradient"
       :isGradient="true"
       :presetEnabled="true"
       :historyEnabled="true"
+      :eyeDropperEnabled="true"
       :onStartChange="color => onChange(color, 'start')"
       :onChange="color => onChange(color, 'change')"
       :onEndChange="color => onChange(color, 'end')"
     />
+
+    <canvas id="canv" width="600" height="400" class="absolute right-4 top-4 bg-gray-200 rounded-md" ref="canvas"></canvas>
   </div>
 </template>
 
@@ -124,7 +159,8 @@ export default {
             alpha: 1
           }
         ]      
-      }
+      },
+      canvas: this.$refs.canvas
     }
   },   
 
@@ -145,13 +181,17 @@ export default {
 <template>
   <div id="app">
     <VColorPicker
+      :canvas="canvas"
       :color="color"
       :presetEnabled="true"
       :historyEnabled="true"
+      :eyeDropperEnabled="true"
       :onStartChange="color => onChange(color, 'start')"
       :onChange="color => onChange(color, 'change')"
       :onEndChange="color => onChange(color, 'end')"
     />
+
+    <canvas id="canv" width="600" height="400" class="absolute right-4 top-4 bg-gray-200 rounded-md" ref="canvas"></canvas>
   </div>
 </template>
 
@@ -163,6 +203,7 @@ import '@envis/vcolor-picker/dist/style.css'
 name: 'App',
 
 const color = ref({ red: 255, green: 0, blue: 0, alpha: 1 })
+const canvas = ref({})
 
 const onChange = (attrs, name) => {
   color.value = { ...attrs }
@@ -176,14 +217,18 @@ const onChange = (attrs, name) => {
 <template>
   <div id="app">
     <VColorPicker
+      :canvas="canvas"
       :gradient="gradient"
       :isGradient="true"
       :presetEnabled="true"
       :historyEnabled="true"
+      :eyeDropperEnabled="true"
       :onStartChange="color => onChange(color, 'start')"
       :onChange="color => onChange(color, 'change')"
       :onEndChange="color => onChange(color, 'end')"
     />
+
+    <canvas id="canv" width="600" height="400" class="absolute right-4 top-4 bg-gray-200 rounded-md" ref="canvas"></canvas>
   </div>
 </template>
 
@@ -214,6 +259,7 @@ const gradient = ref({
     }
   ]      
 })
+const canvas = ref({})
 
 const onChange = (attrs, name) => {
   console.log(name)
@@ -223,7 +269,7 @@ const onChange = (attrs, name) => {
 
 ## Demo
 
-There is currently no demo
+[VColor Picker demo link](https://vcolor-picker-demo.onrender.com)
 
 ## Vue 3 + Vite
 

@@ -17,7 +17,10 @@
 
     const props = defineProps({
         canvas: Object,
-        multipleLayers: Boolean,
+        multipleLayers: {
+            type: Boolean,
+            default: false
+        },
         updateColor: Function
     })
 
