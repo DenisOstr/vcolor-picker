@@ -21,7 +21,7 @@
         const color = hexToRgb(hexCode)
 
         if (color) {
-            props.updateColor(color)
+            props.updateColor(color, 'onEndChange')
         }
     }
 </script>

@@ -119,7 +119,7 @@
     const getMouseClick = (event) => {
         if (color.value) {
             const colorData = hexToRgb(color.value)
-            props.updateColor(colorData)
+            props.updateColor(colorData, 'onEndChange')
             
             // emits('handleColorValue', color.value)
         }
