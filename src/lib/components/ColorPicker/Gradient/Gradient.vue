@@ -3,7 +3,7 @@
 
     <Area :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :hue="colorHue" :saturation="colorSaturation"
         :value="colorValue" :updateColor="updateColor" :isGradient="true" :gradientPosition="gradientPosition" :type="gradientType" :degree="gradientDegree"
-        :canvas="canvas" :multipleLayers="multipleLayers" :eyeDropperEnabled="eyeDropperEnabled" :points="gradientPoints"
+        :isCanvas="isCanvas" :container="container" :canvas="canvas" :multipleLayers="multipleLayers" :eyeDropperEnabled="eyeDropperEnabled" :points="gradientPoints"
         :activePointIndex="activePointIndex" :changeGradientControl="changeGradientControl" :changeActivePointIndex="changeActivePointIndex"
         :updateGradientLeft="updateGradientLeft" :addPoint="addPoint" :removePoint="removePoint" @eyeDropperEvent="$emit('eyeDropperEvent', $event)" />
 
@@ -56,6 +56,8 @@
         historyEnabled: Boolean,
         eyeDropperEnabled: Boolean,
 
+        isCanvas: Boolean,
+        container: String,
         canvas: Object,
         multipleLayers: Boolean,
 

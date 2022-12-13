@@ -1,6 +1,6 @@
 <template>
     <Area :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :hue="colorHue"
-        :canvas="canvas" :multipleLayers="multipleLayers" :eyeDropperEnabled="eyeDropperEnabled"
+        :isCanvas="isCanvas" :container="container" :canvas="canvas" :multipleLayers="multipleLayers" :eyeDropperEnabled="eyeDropperEnabled"
         :saturation="colorSaturation" :value="colorValue" :updateColor="updateColor" :isGradient="false" @eyeDropperEvent="$emit('eyeDropperEvent', $event)" />
     <Preview :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :updateColor="updateColor" />
 
@@ -52,6 +52,8 @@
         historyEnabled: Boolean,
         eyeDropperEnabled: Boolean,
 
+        isCanvas: Boolean,
+        container: String,
         canvas: Object,
         multipleLayers: Boolean,
 

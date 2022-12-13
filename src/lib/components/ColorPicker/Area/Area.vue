@@ -19,7 +19,7 @@
                 <Alpha :alpha="alpha" :red="red" :green="green" :blue="blue" :updateColor="updateColor" />
             </div>
 
-            <EyeDropper :canvas="canvas" :multipleLayers="multipleLayers" :updateColor="updateColor" @handleEyeDropperEvent="$emit('eyeDropperEvent', $event)" v-if="eyeDropperEnabled" />
+            <EyeDropper :isCanvas="isCanvas" :container="container" :canvas="canvas" :multipleLayers="multipleLayers" :updateColor="updateColor" @handleEyeDropperEvent="$emit('eyeDropperEvent', $event)" v-if="eyeDropperEnabled" />
         </div>
     </div>
 </template>
@@ -50,6 +50,8 @@
         type: String,
         activePointIndex: Number,
         eyeDropperEnabled: Boolean,
+        isCanvas: Boolean,
+        container: String,
         canvas: Object,
         multipleLayers: Boolean,
         updateColor: Function,
