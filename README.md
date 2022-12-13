@@ -29,6 +29,8 @@ npm install @envis/vcolor-picker
 
 | Name               | Type        | Default                                                                           | Description                             |
 | -----------        | ----------- | --------------------------------------------------------------------------------- | --------------------------------------- |
+| isCanvas           | Boolean     |                                                                                   | property to check canvas or html area
+| container          | String      |                                                                                   | container id of html area (for taking screenshot)
 | canvas             | Object      | `{}`                                                                              | html5 canvas object (`canvas` ref)
 | color              | Object      | `{ red: 255, green: 0, blue: 0, alpha: 1, hue: 0, saturation: 100, value: 100 }`  | object of rgb and hsv values
 | isGradient         | Boolean     | `false`                                                                           | property renders a gradient color picker
@@ -173,6 +175,63 @@ export default {
 </script>
 ```
 
+#### Color picker with HTML area instead canvas
+
+```vue
+<template>
+  <div id="app">
+    <VColorPicker
+      :color="color"
+      :isCanvas="false"
+      container="artboard"
+      :presetEnabled="true"
+      :historyEnabled="true"
+      :eyeDropperEnabled="true"
+      :onStartChange="color => onChange(color, 'start')"
+      :onChange="color => onChange(color, 'change')"
+      :onEndChange="color => onChange(color, 'end')"
+    />
+
+    <div id="artboard" class="absolute right-5 top-5">
+        <div class="relative bg-gray-200 w-[600px] h-[400px] rounded-md">
+            <div class="absolute top-10 left-10 bg-green-400 w-32 h-32"></div>
+            <div class="absolute bottom-10 right-10 bg-violet-600 w-32 h-32 rounded-full"></div>
+        </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { VColorPicker } from '@envis/vcolor-picker'
+import '@envis/vcolor-picker/dist/style.css'
+
+export default {
+  name: 'App',
+
+  components: {
+    VColorPicker
+  },
+
+  data()  {
+    return {
+      color: {
+        red: 255,
+        green: 0,
+        blue: 0,
+        alpha: 1
+      },
+    }
+  },   
+
+  methods: {
+    onChange(attrs, name) {
+      this.color = { ...attrs }
+    }
+  }
+}
+</script>
+```
+
 ### Composition API
 
 #### Simple color picker
@@ -263,6 +322,47 @@ const canvas = ref({})
 
 const onChange = (attrs, name) => {
   console.log(name)
+}
+</script>
+```
+
+#### Color picker with HTML area instead canvas
+
+```vue
+<template>
+  <div id="app">
+    <VColorPicker
+      :isCanvas="false"
+      container="artboard"
+      :color="color"
+      :presetEnabled="true"
+      :historyEnabled="true"
+      :eyeDropperEnabled="true"
+      :onStartChange="color => onChange(color, 'start')"
+      :onChange="color => onChange(color, 'change')"
+      :onEndChange="color => onChange(color, 'end')"
+    />
+
+    <div id="artboard" class="absolute right-5 top-5">
+        <div class="relative bg-gray-200 w-[600px] h-[400px] rounded-md">
+            <div class="absolute top-10 left-10 bg-green-400 w-32 h-32"></div>
+            <div class="absolute bottom-10 right-10 bg-violet-600 w-32 h-32 rounded-full"></div>
+        </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { VColorPicker } from '@envis/vcolor-picker'
+import '@envis/vcolor-picker/dist/style.css'
+
+name: 'App',
+
+const color = ref({ red: 255, green: 0, blue: 0, alpha: 1 })
+
+const onChange = (attrs, name) => {
+  color.value = { ...attrs }
 }
 </script>
 ```
