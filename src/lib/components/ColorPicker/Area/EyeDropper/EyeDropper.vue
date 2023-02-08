@@ -12,7 +12,7 @@
 
 <script setup>
     import { ref } from 'vue'
-    import html2canvas from 'html2canvas'
+    import * as htmlToImage from 'html-to-image'
 
     import { hexToRgb, rgbToHex } from '@/lib/helpers'
 
@@ -53,11 +53,13 @@
                 if (props.container) {
                     const artboard = document.getElementById(props.container)
 
-                    html2canvas(artboard).then((canvas) => {
+                    htmlToImage.toCanvas(artboard).then((canvas) => {
                         const app = document.getElementById('app')
                         
                         canvas.setAttribute('id', 'eyedropper_artboard-mirror')
                         canvas.classList = 'absolute opacity-0'
+                        canvas.style.width = `${artboard.getBoundingClientRect().width}px`
+                        canvas.style.height = `${artboard.getBoundingClientRect().height}px`
                         canvas.style.top = `${artboard.getBoundingClientRect().y}px`
                         canvas.style.left = `${artboard.getBoundingClientRect().x}px`
 
