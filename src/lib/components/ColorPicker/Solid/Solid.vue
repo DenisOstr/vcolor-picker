@@ -1,7 +1,22 @@
 <template>
-    <Area :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :hue="colorHue"
-        :isCanvas="isCanvas" :container="container" :canvas="canvas" :multipleLayers="multipleLayers" :eyeDropperEnabled="eyeDropperEnabled"
-        :saturation="colorSaturation" :value="colorValue" :updateColor="updateColor" :isGradient="false" @eyeDropperEvent="$emit('eyeDropperEvent', $event)" />
+    <Area
+        :red="colorRed"
+        :green="colorGreen"
+        :blue="colorBlue"
+        :alpha="colorAlpha"
+        :hue="colorHue"
+        :isCanvas="isCanvas"
+        :container="container"
+        :canvas="canvas"
+        :multipleLayers="multipleLayers"
+        :clickOutsideEnabled="clickOutsideEnabled"
+        :eyeDropperEnabled="eyeDropperEnabled"
+        :saturation="colorSaturation"
+        :value="colorValue"
+        :updateColor="updateColor"
+        :isGradient="false"
+        @eyeDropperEvent="$emit('eyeDropperEvent', $event)"
+    />
     <Preview :red="colorRed" :green="colorGreen" :blue="colorBlue" :alpha="colorAlpha" :updateColor="updateColor" />
 
     <div class="ready-colors" v-if="presetEnabled || historyEnabled">
@@ -56,6 +71,7 @@
         container: String,
         canvas: Object,
         multipleLayers: Boolean,
+        clickOutsideEnabled: Boolean,
 
         onStartChange: Function,
         onChange: Function,
