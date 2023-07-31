@@ -24,6 +24,10 @@
             type: Boolean,
             default: false
         },
+        clickOutsideEnabled: {
+            type: Boolean,
+            default: true
+        },
         updateColor: Function
     })
 
@@ -40,14 +44,20 @@
 
             if (props.isCanvas) {
                 if (props.multipleLayers) {
-                    canvas.upperCanvasEl.style.display = 'none'
-                    canvas.lowerCanvasEl.addEventListener('mousemove', getCoords)
-                    canvas.lowerCanvasEl.style.cursor = "url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAlBJREFUOBGNkk2IUlEUx+99vufXQvCjEA11YWgk7TTLZhwVLTfSRmY1QbOoTdMqad0iiGB20cpVUAt3SVHCJDJG40IXBVGLIIOB8hM/QPy+/a/xYqK38MJ99757zu9/zj3nUrLmiEajdkEQni6Xy6hKpfqB/eNCofCMrsOHQiEPgPfwtdhsNkYpJe12m0LolkpJIJFI7DkcDm+9Xv/o9/vPw+dwsVhYnE4nc7lc1G63016vx8bj8TlRSWA6nd6cz+cXAoHAGYD3sDdarVam1+vpaDRaITgjjLHTigKArkK9ifXhbDYjBoOBSZL0F261Wqzb7VKtVvtBUQCwi4N88kjD4ZAg+ioyT53DGo3mJwLs/VcD3PkyrnAwmUwks9n8YDAYuPBvxGQASL/fp8imiwJeKZVK3/4R4DAicliLIt4pFosvsH9Vq9Wu4b5GCHC4j+hb5XL5C09JWOWFTzAY3MJyAAHJ7XbfRo9fclsmk2maTKY8IhJRFAna+QTwJ27jYyUQDofj6O1bPBLJ6/Xu5vP5N3/MhMC2gxrcReTvEGio1er7eFRR2S7EYrE40nsNWPB4PLu5XO6dbIxEIjuo+COkfAyfTZ1OF4dIHyJnZR8RkZ/zH5/PdyObzR7KhmQyud3pdFYw2rVRqVSOYePTIvvwVYDyKThUT8KpVGq70WjsI/Iv+HC4zp2VhoiiEP625ZFOp683m819iLZxtlGtVuuyTWmlePcM9x9A6DNWikd0EYJtdGPz6OjoqxJ08ox3oQzYgKtcwgwi7Q5athbMhX4DL0sglf8ys78AAAAASUVORK5CYII=') 0 32, auto"
+                    props.canvas.upperCanvasEl.style.display = 'none'
+
+                    props.canvas.lowerCanvasEl.addEventListener('mousemove', getCoords)
+                    props.canvas.lowerCanvasEl.addEventListener('mouseout', canvasLeave)
+                    
+                    props.canvas.lowerCanvasEl.style.cursor = "url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAlBJREFUOBGNkk2IUlEUx+99vufXQvCjEA11YWgk7TTLZhwVLTfSRmY1QbOoTdMqad0iiGB20cpVUAt3SVHCJDJG40IXBVGLIIOB8hM/QPy+/a/xYqK38MJ99757zu9/zj3nUrLmiEajdkEQni6Xy6hKpfqB/eNCofCMrsOHQiEPgPfwtdhsNkYpJe12m0LolkpJIJFI7DkcDm+9Xv/o9/vPw+dwsVhYnE4nc7lc1G63016vx8bj8TlRSWA6nd6cz+cXAoHAGYD3sDdarVam1+vpaDRaITgjjLHTigKArkK9ifXhbDYjBoOBSZL0F261Wqzb7VKtVvtBUQCwi4N88kjD4ZAg+ioyT53DGo3mJwLs/VcD3PkyrnAwmUwks9n8YDAYuPBvxGQASL/fp8imiwJeKZVK3/4R4DAicliLIt4pFosvsH9Vq9Wu4b5GCHC4j+hb5XL5C09JWOWFTzAY3MJyAAHJ7XbfRo9fclsmk2maTKY8IhJRFAna+QTwJ27jYyUQDofj6O1bPBLJ6/Xu5vP5N3/MhMC2gxrcReTvEGio1er7eFRR2S7EYrE40nsNWPB4PLu5XO6dbIxEIjuo+COkfAyfTZ1OF4dIHyJnZR8RkZ/zH5/PdyObzR7KhmQyud3pdFYw2rVRqVSOYePTIvvwVYDyKThUT8KpVGq70WjsI/Iv+HC4zp2VhoiiEP625ZFOp683m819iLZxtlGtVuuyTWmlePcM9x9A6DNWikd0EYJtdGPz6OjoqxJ08ox3oQzYgKtcwgwi7Q5athbMhX4DL0sglf8ys78AAAAASUVORK5CYII=') 0 32, auto"
                 } else {
-                    canvas.addEventListener('mousemove', getCoords)
-                    canvas.style.cursor = "url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAlBJREFUOBGNkk2IUlEUx+99vufXQvCjEA11YWgk7TTLZhwVLTfSRmY1QbOoTdMqad0iiGB20cpVUAt3SVHCJDJG40IXBVGLIIOB8hM/QPy+/a/xYqK38MJ99757zu9/zj3nUrLmiEajdkEQni6Xy6hKpfqB/eNCofCMrsOHQiEPgPfwtdhsNkYpJe12m0LolkpJIJFI7DkcDm+9Xv/o9/vPw+dwsVhYnE4nc7lc1G63016vx8bj8TlRSWA6nd6cz+cXAoHAGYD3sDdarVam1+vpaDRaITgjjLHTigKArkK9ifXhbDYjBoOBSZL0F261Wqzb7VKtVvtBUQCwi4N88kjD4ZAg+ioyT53DGo3mJwLs/VcD3PkyrnAwmUwks9n8YDAYuPBvxGQASL/fp8imiwJeKZVK3/4R4DAicliLIt4pFosvsH9Vq9Wu4b5GCHC4j+hb5XL5C09JWOWFTzAY3MJyAAHJ7XbfRo9fclsmk2maTKY8IhJRFAna+QTwJ27jYyUQDofj6O1bPBLJ6/Xu5vP5N3/MhMC2gxrcReTvEGio1er7eFRR2S7EYrE40nsNWPB4PLu5XO6dbIxEIjuo+COkfAyfTZ1OF4dIHyJnZR8RkZ/zH5/PdyObzR7KhmQyud3pdFYw2rVRqVSOYePTIvvwVYDyKThUT8KpVGq70WjsI/Iv+HC4zp2VhoiiEP625ZFOp683m819iLZxtlGtVuuyTWmlePcM9x9A6DNWikd0EYJtdGPz6OjoqxJ08ox3oQzYgKtcwgwi7Q5athbMhX4DL0sglf8ys78AAAAASUVORK5CYII=') 0 32, auto"
+                    props.canvas.addEventListener('mousemove', getCoords)
+                    props.canvas.addEventListener('mouseout', canvasLeave)
+
+                    props.canvas.style.cursor = "url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAlBJREFUOBGNkk2IUlEUx+99vufXQvCjEA11YWgk7TTLZhwVLTfSRmY1QbOoTdMqad0iiGB20cpVUAt3SVHCJDJG40IXBVGLIIOB8hM/QPy+/a/xYqK38MJ99757zu9/zj3nUrLmiEajdkEQni6Xy6hKpfqB/eNCofCMrsOHQiEPgPfwtdhsNkYpJe12m0LolkpJIJFI7DkcDm+9Xv/o9/vPw+dwsVhYnE4nc7lc1G63016vx8bj8TlRSWA6nd6cz+cXAoHAGYD3sDdarVam1+vpaDRaITgjjLHTigKArkK9ifXhbDYjBoOBSZL0F261Wqzb7VKtVvtBUQCwi4N88kjD4ZAg+ioyT53DGo3mJwLs/VcD3PkyrnAwmUwks9n8YDAYuPBvxGQASL/fp8imiwJeKZVK3/4R4DAicliLIt4pFosvsH9Vq9Wu4b5GCHC4j+hb5XL5C09JWOWFTzAY3MJyAAHJ7XbfRo9fclsmk2maTKY8IhJRFAna+QTwJ27jYyUQDofj6O1bPBLJ6/Xu5vP5N3/MhMC2gxrcReTvEGio1er7eFRR2S7EYrE40nsNWPB4PLu5XO6dbIxEIjuo+COkfAyfTZ1OF4dIHyJnZR8RkZ/zH5/PdyObzR7KhmQyud3pdFYw2rVRqVSOYePTIvvwVYDyKThUT8KpVGq70WjsI/Iv+HC4zp2VhoiiEP625ZFOp683m819iLZxtlGtVuuyTWmlePcM9x9A6DNWikd0EYJtdGPz6OjoqxJ08ox3oQzYgKtcwgwi7Q5athbMhX4DL0sglf8ys78AAAAASUVORK5CYII=') 0 32, auto"
                 }
 
+                document.body.addEventListener('mousedown', clickOutside)
                 eyeDropperPreview.value = document.createElement('div')
             } else {
                 if (props.container) {
@@ -78,13 +88,22 @@
 
             if (props.isCanvas) {
                 if (props.multipleLayers) {
-                    canvas.lowerCanvasEl.removeEventListener('mousemove', getCoords)
-                    canvas.lowerCanvasEl.removeEventListener('mousedown', getMouseClick)
-                    canvas.upperCanvasEl.style.display = 'block'
+                    props.canvas.lowerCanvasEl.style.cursor = 'default'
+
+                    props.canvas.lowerCanvasEl.removeEventListener('mousemove', getCoords)
+                    props.canvas.lowerCanvasEl.removeEventListener('mousedown', getMouseClick)
+                    props.canvas.lowerCanvasEl.removeEventListener('mouseout', canvasLeave)
+
+                    props.canvas.upperCanvasEl.style.display = 'block'
                 } else {
-                    canvas.removeEventListener('mousemove', getCoords)
-                    canvas.removeEventListener('mousedown', getMouseClick)
+                    props.canvas.style.cursor = 'default'
+
+                    props.canvas.removeEventListener('mousemove', getCoords)
+                    props.canvas.removeEventListener('mousedown', getMouseClick)
+                    props.canvas.removeEventListener('mouseout', canvasLeave)
                 }
+
+                document.body.removeEventListener('mousedown', clickOutside)
             } else {
                 const artboardMirror = document.getElementById('eyedropper_artboard-mirror')
                 const app = document.getElementById('app')
@@ -157,12 +176,53 @@
         document.body.appendChild(eyeDropperPreview.value)
     }
 
+    const canvasLeave = (event) => {
+        if (props.isCanvas) {
+            document.body.removeChild(eyeDropperPreview.value)
+        }
+    }
+
     const getMouseClick = (event) => {
         if (color.value) {
             const colorData = hexToRgb(color.value)
             props.updateColor(colorData, 'onEndChange')
             
             // emits('handleColorValue', color.value)
+        }
+    }
+
+    const clickOutside = (event) => {
+        if (!props.clickOutsideEnabled) {
+            return
+        }
+
+        eyeDropperEvent.value = false
+        emits('handleEyeDropperEvent', eyeDropperEvent.value)
+
+        if (props.canvas) {
+            if (props.multipleLayers) {
+                if (event.target != props.canvas.lowerCanvasEl) {
+                    props.canvas.lowerCanvasEl.style.cursor = 'default'
+
+                    props.canvas.lowerCanvasEl.removeEventListener('mousemove', getCoords)
+                    props.canvas.lowerCanvasEl.removeEventListener('mousedown', getMouseClick)
+                    props.canvas.lowerCanvasEl.removeEventListener('mouseout', canvasLeave)
+
+                    props.canvas.upperCanvasEl.style.display = 'block'
+
+                    document.body.removeEventListener('mousedown', clickOutside)
+                }
+            } else {
+                if (event.target != props.canvas) {
+                    props.canvas.style.cursor = 'default'
+
+                    props.canvas.removeEventListener('mousemove', getCoords)
+                    props.canvas.removeEventListener('mousedown', getMouseClick)
+                    props.canvas.removeEventListener('mouseout', canvasLeave)
+
+                    document.body.removeEventListener('mousedown', clickOutside)
+                }
+            }
         }
     }
 
